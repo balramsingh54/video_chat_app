@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
+const port = process.env.PORT || 4000;
 const { v4: uuidV4 } = require('uuid')
 
 app.set('view engine', 'ejs')
@@ -24,4 +25,6 @@ io.on('connection', socket => {
   })
 })
 
-server.listen(3000)
+server.listen(port , ()=>{
+  console.log("Server running on port : " + port);
+})
